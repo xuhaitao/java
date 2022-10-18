@@ -18,23 +18,7 @@ spec:
     singular: function
   scope: Namespaced
   versions:
-  - additionalPrinterColumns:
-    - jsonPath: .status.build.state
-      name: BuildState
-      type: string
-    - jsonPath: .status.serving.state
-      name: ServingState
-      type: string
-    - jsonPath: .status.serving.resourceRef
-      name: Serving
-      type: string
-    - jsonPath: .status.url
-      name: URL
-      type: string
-    - jsonPath: .metadata.creationTimestamp
-      name: Age
-      type: date
-    name: v1alpha2
+  - name: v1alpha2
     schema:
       openAPIV3Schema:
         properties:
