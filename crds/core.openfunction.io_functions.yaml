@@ -25,9 +25,6 @@ spec:
     - jsonPath: .status.serving.state
       name: ServingState
       type: string
-    - jsonPath: .status.build.resourceRef
-      name: Builder
-      type: string
     - jsonPath: .status.serving.resourceRef
       name: Serving
       type: string
