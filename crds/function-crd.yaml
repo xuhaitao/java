@@ -1,0 +1,202 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    "helm.sh/resource-policy": keep
+  labels:
+    app: istio-pilot
+    chart: istio
+    heritage: Tiller
+    release: istio
+  name: functions.networking.istio.io
+spec:
+  group: networking.istio.io
+  names:
+    categories:
+      - istio-io
+      - networking-istio-io
+    kind: Function
+    listKind: FunctionList
+    plural: functions
+    shortNames:
+      - fuc
+    singular: function
+  scope: Namespaced
+  versions:
+    - additionalPrinterColumns:
+        - description: The name of a service from the service registry
+          jsonPath: .spec.host
+          name: Host
+          type: string
+        - description: 'CreationTimestamp is a timestamp representing the server time
+        when this object was created. It is not guaranteed to be set in happens-before
+        order across separate operations. Clients may not set this value. It is represented
+        in RFC3339 form and is in UTC. Populated by the system. Read-only. Null for
+        lists. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata'
+          jsonPath: .metadata.creationTimestamp
+          name: Age
+          type: date
+      name: v1alpha3
+      schema:
+        openAPIV3Schema:
+          properties:
+            spec:
+              properties:
+                breakers:
+                  properties:
+                    breakPolicy:
+                      properties:
+                        actionBody:
+                          type: string
+                        actionCode:
+                          type: integer
+                        actionHeaders:
+                          additionalProperties:
+                            type: string
+                          type: object
+                        actionType:
+                          enum:
+                            - ERROR
+                            - EJECTION
+                            - DEGRADE
+                          type: string
+                        allowRetrySelect:
+                          type: boolean
+                        breakInterval:
+                          type: string
+                        effectRequests:
+                          type: integer
+                      type: object
+                    checkInterval:
+                      type: string
+                    rollInterval:
+                      type: string
+                    threshold:
+                      properties:
+                        avgResponseTime:
+                          properties:
+                            breakPolicy:
+                              properties:
+                                actionBody:
+                                  type: string
+                                actionCode:
+                                  type: integer
+                                actionHeaders:
+                                  additionalProperties:
+                                    type: string
+                                  type: object
+                                actionType:
+                                  enum:
+                                    - ERROR
+                                    - EJECTION
+                                    - DEGRADE
+                                  type: string
+                                allowRetrySelect:
+                                  type: boolean
+                                breakInterval:
+                                  type: string
+                                effectRequests:
+                                  type: integer
+                              type: object
+                            limitValue:
+                              type: string
+                          type: object
+                        failureRate:
+                          properties:
+                            breakPolicy:
+                              properties:
+                                actionBody:
+                                  type: string
+                                actionCode:
+                                  type: integer
+                                actionHeaders:
+                                  additionalProperties:
+                                    type: string
+                                  type: object
+                                actionType:
+                                  enum:
+                                    - ERROR
+                                    - EJECTION
+                                    - DEGRADE
+                                  type: string
+                                allowRetrySelect:
+                                  type: boolean
+                                breakInterval:
+                                  type: string
+                                effectRequests:
+                                  type: integer
+                              type: object
+                            limitValue:
+                              type: integer
+                          type: object
+                        requestNum:
+                          properties:
+                            breakPolicy:
+                              properties:
+                                actionBody:
+                                  type: string
+                                actionCode:
+                                  type: integer
+                                actionHeaders:
+                                  additionalProperties:
+                                    type: string
+                                  type: object
+                                actionType:
+                                  enum:
+                                    - ERROR
+                                    - EJECTION
+                                    - DEGRADE
+                                  type: string
+                                allowRetrySelect:
+                                  type: boolean
+                                breakInterval:
+                                  type: string
+                                effectRequests:
+                                  type: integer
+                              type: object
+                            limitValue:
+                              type: integer
+                          type: object
+                      type: object
+                    windowInterval:
+                      type: string
+                  type: object
+                code:
+                  type: string
+                degrade:
+                  properties:
+                    body:
+                      type: string
+                    enable:
+                      type: boolean
+                  type: object
+                glimit:
+                  properties:
+                    bucketMils:
+                      format: int32
+                      type: integer
+                    times:
+                      format: int32
+                      type: integer
+                    windowMils:
+                      format: int32
+                      type: integer
+                  type: object
+                subset:
+                  type: string
+                timeout:
+                  format: int32
+                  type: integer
+                uri:
+                  type: string
+              type: object
+            status:
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: { }
+
+---
