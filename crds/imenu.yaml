@@ -1,0 +1,65 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    example.com: example
+  labels:
+    app: foo
+  name: imenus.iface.aif.io
+spec:
+  group: iface.aif.io
+  names:
+    categories:
+      - aif
+      - iface-aif-io
+    kind: IMenu
+    listKind: IMenuList
+    plural: imenus
+    shortNames:
+      - b
+    singular: imenu
+  scope: Namespaced
+  versions:
+    - name: v1alpha3
+      schema:
+        openAPIV3Schema:
+          properties:
+            spec:
+              properties:
+                data:
+                  items:
+                    properties:
+                      icon:
+                        type: string
+                      items:
+                        items:
+                          properties:
+                            icon:
+                              type: string
+                            name:
+                              type: string
+                            sort:
+                              format: int32
+                              type: integer
+                            url:
+                              type: string
+                          type: object
+                        type: array
+                      name:
+                        type: string
+                      sort:
+                        format: int32
+                        type: integer
+                      url:
+                        type: string
+                    type: object
+                  type: array
+              type: object
+            status:
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
