@@ -16,11 +16,11 @@ spec:
     listKind: IMenuList
     plural: imenus
     shortNames:
-      - m
+      - b
     singular: imenu
   scope: Namespaced
   versions:
-    - name: v1alpha3
+    - name: v1
       schema:
         openAPIV3Schema:
           properties:
@@ -29,49 +29,7 @@ spec:
                 menu:
                   items:
                     properties:
-                      icon:
-                        type: string
-                      items:
-                        items:
-                          properties:
-                            icon:
-                              type: string
-                            items:
-                              items:
-                                properties:
-                                  icon:
-                                    type: string
-                                  name:
-                                    type: string
-                                  path:
-                                    type: string
-                                  roles:
-                                    items:
-                                      type: string
-                                    type: array
-                                  showPath:
-                                    type: string
-                                  sort:
-                                    format: int32
-                                    type: integer
-                                type: object
-                              type: array
-                            name:
-                              type: string
-                            path:
-                              type: string
-                            roles:
-                              items:
-                                type: string
-                              type: array
-                            showPath:
-                              type: string
-                            sort:
-                              format: int32
-                              type: integer
-                          type: object
-                        type: array
-                      menuTypes:
+                      applyTo:
                         items:
                           enum:
                             - ADMIN
@@ -79,21 +37,69 @@ spec:
                             - TENANT
                           type: string
                         type: array
-                      name:
+                      child:
+                        items:
+                          properties:
+                            child:
+                              items:
+                                properties:
+                                  icon:
+                                    type: string
+                                  name:
+                                    type: string
+                                  roles:
+                                    items:
+                                      type: string
+                                    type: array
+                                  route:
+                                    type: string
+                                  sort:
+                                    format: int32
+                                    type: integer
+                                  url:
+                                    type: string
+                                type: object
+                              type: array
+                            icon:
+                              type: string
+                            name:
+                              type: string
+                            roles:
+                              items:
+                                type: string
+                              type: array
+                            route:
+                              type: string
+                            sort:
+                              format: int32
+                              type: integer
+                            url:
+                              type: string
+                          type: object
+                        type: array
+                      icon:
                         type: string
-                      path:
+                      name:
                         type: string
                       roles:
                         items:
                           type: string
                         type: array
-                      showPath:
+                      route:
                         type: string
                       sort:
                         format: int32
                         type: integer
+                      url:
+                        type: string
                     type: object
                   type: array
+                prdCode:
+                  type: string
+                prdName:
+                  type: string
+                prdVersion:
+                  type: string
               type: object
             status:
               type: object
